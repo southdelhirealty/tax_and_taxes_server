@@ -1,0 +1,47 @@
+{
+  "name": "taxandtaxes-email-server",
+  "version": "1.0.0",
+  "description": "Email server for Tax And Taxes contact form",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "scripts": {
+    "build": "npm ci --only=production",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "watch": "nodemon index.js",
+    "production": "cross-env NODE_ENV=production node index.js",
+    "production:win": "set NODE_ENV=production && node index.js",
+    "production:unix": "NODE_ENV=production node index.js"
+  },
+  "dependencies": {
+    "@cashfreepayments/cashfree-js": "^1.0.5",
+    "@types/multer": "^1.4.13",
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^2.0.1",
+    "nodemailer": "^6.9.15"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/nodemailer": "^6.4.16",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "keywords": [
+    "express",
+    "nodejs",
+    "email",
+    "tax",
+    "contact-form"
+  ],
+  "author": "Tax And Taxes",
+  "license": "ISC"
+}

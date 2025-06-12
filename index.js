@@ -20,11 +20,11 @@ const cspMiddleware = (req, res, next) => {
     "frame-ancestors 'none'; " +
     "default-src 'self'; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sdk.cashfree.com https://js.cashfree.com https://cdn.cashfree.com; " +
-    "connect-src 'self' https://api.cashfree.com https://sdk.cashfree.com https://cdn.cashfree.com; " +
-    "frame-src 'self' https://sdk.cashfree.com https://cdn.cashfree.com; " +
-    "img-src 'self' data: blob: https://sdk.cashfree.com https://cdn.cashfree.com; " +
-    "style-src 'self' 'unsafe-inline' https://sdk.cashfree.com https://cdn.cashfree.com; " +
-    "font-src 'self' data: https://sdk.cashfree.com https://cdn.cashfree.com"
+    "connect-src 'self' https://api.cashfree.com https://sandbox.cashfree.com https://sdk.cashfree.com https://js.cashfree.com https://cdn.cashfree.com; " +
+    "frame-src 'self' https://sdk.cashfree.com https://js.cashfree.com https://cdn.cashfree.com https://payments.cashfree.com https://payments-test.cashfree.com; " +
+    "img-src 'self' data: blob: https://sdk.cashfree.com https://js.cashfree.com https://cdn.cashfree.com; " +
+    "style-src 'self' 'unsafe-inline' https://sdk.cashfree.com https://js.cashfree.com https://cdn.cashfree.com; " +
+    "font-src 'self' data: https://sdk.cashfree.com https://js.cashfree.com https://cdn.cashfree.com"
   );
 
   // Also set X-Frame-Options for older browsers

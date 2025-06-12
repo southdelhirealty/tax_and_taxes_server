@@ -309,7 +309,6 @@ const cashfreeConfig = {
 
 // Package pricing mapping
 const packagePricing = {
-  'try': 1,
   'Tax Planning With Normal Filing': 799,
   'Salaried Tax ProAssist': 999,
   'Capital Gains ProAssist': 2599,

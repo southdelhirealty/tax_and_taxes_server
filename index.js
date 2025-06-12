@@ -79,7 +79,6 @@ const corsOptions = {
     
     const allowedOrigins = process.env.NODE_ENV === 'production' 
       ? [
-          'https://taxandtaxes.vercel.app',
           'https://taxandtaxes.com',
           'https://www.taxandtaxes.com'
         ]
@@ -309,6 +308,7 @@ const cashfreeConfig = {
 
 // Package pricing mapping
 const packagePricing = {
+  'try': 1,
   'Tax Planning With Normal Filing': 799,
   'Salaried Tax ProAssist': 999,
   'Capital Gains ProAssist': 2599,

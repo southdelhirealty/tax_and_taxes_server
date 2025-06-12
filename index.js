@@ -12,6 +12,27 @@ require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// CSP Headers Middleware
+const cspMiddleware = (req, res, next) => {
+  // Set frame-ancestors directive via headers
+  res.setHeader(
+    'Content-Security-Policy',
+    "frame-ancestors 'none'; " +
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sdk.cashfree.com https://js.cashfree.com https://cdn.cashfree.com; " +
+    "connect-src 'self' https://api.cashfree.com https://sdk.cashfree.com https://cdn.cashfree.com; " +
+    "frame-src 'self' https://sdk.cashfree.com https://cdn.cashfree.com; " +
+    "img-src 'self' data: blob: https://sdk.cashfree.com https://cdn.cashfree.com; " +
+    "style-src 'self' 'unsafe-inline' https://sdk.cashfree.com https://cdn.cashfree.com; " +
+    "font-src 'self' data: https://sdk.cashfree.com https://cdn.cashfree.com"
+  );
+
+  // Also set X-Frame-Options for older browsers
+  res.setHeader('X-Frame-Options', 'DENY');
+
+  next();
+};
+
 // Create uploads directory if it doesn't exist
 // For Vercel, use /tmp directory which is available in serverless functions
 const uploadsDir = process.env.NODE_ENV === 'production' 
@@ -78,6 +99,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(cspMiddleware);  // Apply CSP headers
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
@@ -870,7 +892,7 @@ app.post('/api/create-payment-order', async (req, res) => {
     const response = await axios.post(`${cashfreeConfig.baseUrl}/orders`, orderData, {
       headers: {
         'Content-Type': 'application/json',
-        'x-api-version': '2023-08-01',
+        'x-api-version': '2025-01-01',
         'x-client-id': cashfreeConfig.appId,
         'x-client-secret': cashfreeConfig.secretKey
       }
@@ -906,7 +928,7 @@ app.post('/api/verify-payment', async (req, res) => {
     const response = await axios.get(`${cashfreeConfig.baseUrl}/orders/${orderId}`, {
       headers: {
         'Content-Type': 'application/json',
-        'x-api-version': '2023-08-01',
+        'x-api-version': '2025-01-01',
         'x-client-id': cashfreeConfig.appId,
         'x-client-secret': cashfreeConfig.secretKey
       }

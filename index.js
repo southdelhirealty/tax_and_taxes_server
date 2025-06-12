@@ -6,8 +6,8 @@ const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
 
-// Load environment variables from parent directory
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+// Load environment variables from current directory
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
